@@ -1,0 +1,34 @@
+O_DOCKER="Docker"
+O_DOCKER_L=${O_DOCKER,,}
+O_VAG_VIRTUALBOX="Vagrant (Virtualbox)"
+O_VAG_VIRTUALBOX_L=${O_VAG_VIRTUALBOX,,}
+O_VAG_VMWARE="Vagrant (VMware)"
+O_VAG_VMWARE_L=${O_VAG_VMWARE,,}
+
+ask_virt_type() {
+  if [ -z $VIRT_TYPE ]
+  then
+    box_title="Virtualization type"
+    box_subtitle="Select the type of virtualization"
+    box_dimen="20 87 3"
+    box_options=(
+              "$O_DOCKER" "Create Wazuh instances using Docker" \
+              "$O_VAG_VIRTUALBOX" "Create Wazuh instances using Vagrant and Virtualbox" \
+              "$O_VAG_VMWARE" "Create Wazuh instances using Vagrant and VMware" \
+              )
+    retval=$(display_menu_box)
+  else
+    retval=$VIRT_TYPE
+  fi
+
+  if [ "${retval,,}" != "$O_DOCKER_L" ]
+  then
+    error_msg="Virtualization type '$retval' is not allowed."
+    debug "$error_msg"
+    display_text_box "$error_msg"
+    exit 1
+  fi
+
+  debug "Virtualization chosen: $retval"
+  VIRT_TYPE="${retval,,}"
+}

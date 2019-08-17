@@ -1,0 +1,54 @@
+O_UBUNTU="Ubuntu"
+O_CENTOS="Centos"
+
+ask_os_name() {
+  if [ -z $OS_NAME ]
+  then
+    box_title="Running OS"
+    box_subtitle="Choose the desired OS for the $INSTALLATION_TYPE"
+    box_dimen="20 87 2"
+    box_options=(
+              "$O_UBUNTU" "Create an Ubuntu $INSTALLATION_TYPE" \
+              "$O_CENTOS" "Create a Centos $INSTALLATION_TYPE" \
+              )
+    retval=$(display_menu_box)
+  else
+    retval=$OS_NAME
+  fi
+
+  debug "OS: $retval"
+  OS_NAME="${retval,,}"
+}
+
+ask_os_version() {
+  if [ -z $OS_VERSION ]
+  then
+    box_title="Running OS version"
+    box_subtitle="Choose the desired version of $OS_NAME"
+    if [ "$OS_NAME" ==  "ubuntu" ]
+    then
+        OS_TYPE="deb"
+        box_dimen="20 87 1"
+        box_options=(
+              "16.04" " - Create an Ubuntu 16.04 image"
+              )
+    elif [ "$OS_NAME" ==  "centos" ]
+    then
+        OS_TYPE="rpm"
+        box_dimen="20 87 1"
+        box_options=(
+              "7" " - Create an Centos 7 image"
+              )
+    else
+      echo "Invalid OS name."
+      exit 1
+    fi
+
+    retval=$(display_menu_box)
+  else
+    retval=$OS_VERSION
+  fi
+
+  debug "OS version: $retval"
+  OS_VERSION="${retval,,}"
+}

@@ -1,0 +1,18 @@
+# Virtualization provider
+#VIRT_TYPE="docker"
+
+# Wazuh installation
+#INSTALLATION_TYPE="agent"
+#BRANCH="v3.9.1"
+
+# OS image options
+#OS_NAME="ubuntu"
+#OS_VERSION="16.04"
+#CREATE_IMAGE_IF_NECESSARY="YES"
+
+# Run options
+#RO_DEBUG=LEVEL 1 #LEVEL 1, LEVEL 2, NONE
+#RO_PROTOCOL=UDP  #UDP, TCP
+#RO_SHARED_FOLDER=NONE  #NONE OR A VALID PATH
+#RO_MANAGER_IP=1.1.1.1
+#RO_AUTHD_IP=1.1.1.1

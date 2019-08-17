@@ -1,0 +1,24 @@
+run_instance() {
+    if [ "$VIRT_TYPE" == "docker" ]
+    then
+        IMAGE=$OS_NAME$OS_VERSION-$INSTALLATION_TYPE:$BRANCH
+
+        if [ "$RO_SHARED_FOLDER" != "NONE" ]
+        then
+            SHARED="-v $RO_SHARED_FOLDER:/shared"
+        fi
+
+        if [ "$INSTALLATION_TYPE" == "agent" ]
+        then
+            REP_IP="--manager $RO_MANAGER_IP --authd_server $RO_AUTHD_IP"
+        fi
+
+        if [ "$RO_PROTOCOL" != "" ] || [ "$RO_PROTOCOL" != "" ]
+        then
+            INT_OPS="-$RO_PROTOCOL$RO_DEBUG"
+        fi
+
+        docker run $SHARED \
+            -d $IMAGE run_wazuh "$INT_OPS"
+    fi
+}

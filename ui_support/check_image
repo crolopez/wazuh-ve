@@ -1,0 +1,29 @@
+check_image() {
+    if [ "$VIRT_TYPE" == "docker" ]
+    then
+        if [ ! "$(docker images | grep $OS_NAME$OS_VERSION-$INSTALLATION_TYPE | grep $BRANCH)" ]
+        then
+            box_title="Docker image for $OS_NAME-$OS_VERSION $INSTALLATION_TYPE ($BRANCH) not found"
+            box_subtitle="Do you want to create the image?"
+            box_dimen="20 87"
+
+            if [ "$CREATE_IMAGE_IF_NECESSARY" != "YES" ] && \
+                ( [ ! -z $CREATE_IMAGE_IF_NECESSARY ] || \
+                    ! ($(display_boolean_box))
+                )
+            then
+                exit 1
+            fi
+
+            cd setup
+            make BRANCH=$BRANCH OS=$OS_NAME \
+                OS_VERSION=$OS_VERSION OS_TYPE=$OS_TYPE \
+                TYPE=$INSTALLATION_TYPE
+            cd ..
+
+            debug "Image created"
+        else
+            debug "The image does not need to be created"
+        fi
+    fi
+}

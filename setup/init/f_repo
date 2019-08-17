@@ -1,0 +1,9 @@
+fetch_repo() {
+  BASE_DIR=`pwd`
+  
+  cd $1 && \
+  git clone https://github.com/wazuh/wazuh && \
+  cd wazuh && \
+  git checkout $2 && \
+  cd $BASE_DIR
+}

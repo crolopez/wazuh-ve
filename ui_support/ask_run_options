@@ -1,0 +1,119 @@
+O_DEBUG_NONE="NONE"
+O_DEBUG_1="LEVEL 1"
+O_DEBUG_2="LEVEL 2"
+
+ask_debug() {
+  if [ -z $RO_DEBUG ]
+  then
+    box_title="Debug mode"
+    box_subtitle="Select the debug mode"
+    box_dimen="20 87 3"
+    box_options=(
+              "$O_DEBUG_NONE" "No debug" \
+              "$O_DEBUG_1" "Activate level 1 debug" \
+              "$O_DEBUG_2" "Activate level 2 debug" \
+              )
+    retval=$(display_menu_box)
+  else
+    retval=$RO_DEBUG
+  fi
+
+  if [ "$retval" == "$O_DEBUG_1" ]
+  then
+    debug "Debug mode: $O_DEBUG_1"
+    RO_DEBUG="d"
+  elif [ "$retval" == "$O_DEBUG_2" ]
+  then
+    debug "Debug mode: $O_DEBUG_2"
+    RO_DEBUG="dd"
+  elif [ "$retval" == "$O_DEBUG_NONE" ]
+  then
+    debug "Debug mode: $O_DEBUG_NONE"
+    RO_DEBUG=""
+  else
+    debug "Invalid debug mode"
+    exit 1
+  fi
+}
+
+O_UDP="UDP"
+O_TCP="TCP"
+
+ask_protocol() {
+  if [ -z $RO_PROTOCOL ]
+  then
+    box_title="Communication protocol"
+    box_subtitle="Choose the communication protocol"
+    box_dimen="20 87 2"
+    box_options=(
+              "$O_UDP" "" \
+              "$O_TCP" "" \
+              )
+    retval=$(display_menu_box)
+  else
+    retval=$RO_PROTOCOL
+  fi
+
+  if [ "$retval" == "$O_UDP" ]
+  then
+    RO_PROTOCOL=""
+  elif [ "$retval" == "$O_TCP" ]
+  then
+    RO_PROTOCOL="t"
+  else
+    debug "Invalid communication protocol"
+    exit 1
+  fi
+
+  debug "Communication protocol: $retval"
+}
+
+ask_shared_folder() {
+  if [ -z $RO_SHARED_FOLDER ]
+  then
+    box_title="Shared folder"
+    box_subtitle="Choose a shared folder. Write NONE if you don't want."
+    box_dimen="20 87"
+    box_default_in="NONE"
+    RO_SHARED_FOLDER=$(display_input_box)
+  fi
+
+  debug "Shared folder: $RO_SHARED_FOLDER"
+}
+
+ask_manager_ip() {
+  if [ -z $RO_MANAGER_IP ]
+  then
+    box_title="Manager IP"
+    box_subtitle="Write the manager IP"
+    box_dimen="20 87"
+    box_default_in="1.1.1.1"
+    RO_MANAGER_IP=$(display_input_box)
+  fi
+
+  debug "Manager IP: $RO_MANAGER_IP"
+}
+
+ask_authd_ip() {
+  if [ -z $RO_AUTHD_IP ]
+  then
+    box_title="Authd IP"
+    box_subtitle="Write the authentication server IP"
+    box_dimen="20 87"
+    box_default_in="1.1.1.1"
+    RO_AUTHD_IP=$(display_input_box)
+  fi
+
+  debug "Authd IP: $RO_AUTHD_IP"
+}
+
+ask_run_options() {
+    ask_debug
+    ask_protocol
+    ask_shared_folder
+    if [ "$INSTALLATION_TYPE" == "agent" ]
+    then
+        ask_manager_ip
+        ask_authd_ip
+    fi
+}
