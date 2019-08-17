@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Load the UI functions
-. ui_functions
+. config/ui_functions
 
 # Enable or disable debug mod
 DEBUG_MODE="yes"

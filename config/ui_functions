@@ -1,0 +1,14 @@
+cd config/ui_support
+
+. whiptail_functions
+. ui_debug
+. ask_virt_type
+. ask_inst_type
+. ask_os
+. ask_branch
+. check_image
+. ask_run_options
+. run_instance
+. default_settings
+
+cd ..
