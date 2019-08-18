@@ -21,11 +21,11 @@ ask_os_version
 # Choose branch
 ask_branch
 
-# Check the availability of the image
-check_image
-
 # Check the run options
 ask_run_options
+
+# Check the availability of the image
+check_image
 
 # Run the instance
 run_instance
