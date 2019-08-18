@@ -35,9 +35,10 @@ ask_os_version() {
     elif [ "$OS_NAME" ==  "centos" ]
     then
         OS_TYPE="rpm"
-        box_dimen="20 87 1"
+        box_dimen="20 87 2"
         box_options=(
-              "7" " - Create an Centos 7 image"
+              "7" " - Create an Centos 7 image",
+              "6" " - Create an Centos 6 image"
               )
     else
       echo "Invalid OS name."
