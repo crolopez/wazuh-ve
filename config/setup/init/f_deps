@@ -6,13 +6,13 @@ install_deps() {
     apt-get update -y && \
     apt-get install -y nano git valgrind gdb && \
     apt-get install -y python gcc make libc6-dev curl policycoreutils automake autoconf libtool && \
-    apt-get install -y sqlite3
+    apt-get install -y sqlite3 net-tools
   elif [ $1 = "rpm" ]
   then
     yum update -y && \
     yum install -y nano git valgrind gdb && \
     yum install -y make gcc policycoreutils-python automake autoconf libtool && \
-    yum install -y sqlite3
+    yum install -y sqlite net-tools
   else
       echo "Invalid OS type."
       exit 1

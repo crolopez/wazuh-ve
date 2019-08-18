@@ -72,7 +72,7 @@ ask_shared_folder() {
   if [ -z $RO_SHARED_FOLDER ]
   then
     box_title="Shared folder"
-    box_subtitle="Choose a shared folder. Write NONE if you don't want."
+    box_subtitle="Choose a shared folder."
     box_dimen="20 87"
     box_default_in="NONE"
     RO_SHARED_FOLDER=$(display_input_box)

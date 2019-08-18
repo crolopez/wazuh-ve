@@ -3,7 +3,7 @@ run_instance() {
     then
         IMAGE=$OS_NAME$OS_VERSION-$INSTALLATION_TYPE:$BRANCH
 
-        if [ "$RO_SHARED_FOLDER" != "NONE" ]
+        if [ "$INSTALLATION_TYPE" == "NONE" ] || [ "$INSTALLATION_TYPE" == "" ]
         then
             SHARED="-v $RO_SHARED_FOLDER:/shared"
         fi
@@ -19,6 +19,6 @@ run_instance() {
         fi
 
         docker run $SHARED \
-            -d $IMAGE run_wazuh "$INT_OPS"
+            -d $IMAGE run_wazuh $INT_OPS $REP_IP
     fi
 }
