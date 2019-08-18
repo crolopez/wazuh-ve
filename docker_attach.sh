@@ -11,7 +11,6 @@ function need_dependence {
 function check_dependencies {
     need_dependence docker
     need_dependence whiptail
-    need_dependence awk
     need_dependence cut
     need_dependence nsenter
 }
@@ -29,9 +28,9 @@ do
     CONT_ARRAY[$i]=$LINE
     CONT_ARRAY[$i + 1]=" "
     i=$[ $i + 2 ]
-done < <(docker ps |  awk -F '[[:space:]][[:space:]]+' '{if(NR>1)  print $1, " ", $2, " ", $5, " ", $NF}')
+done < <(docker ps --format "[{{.Image}}] [{{.ID}}] [{{.CreatedAt}}]")
 
-CONTAINER=$(whiptail --title "Interface launcher" --menu "Select a container" 16 78 10 "${CONT_ARRAY[@]}" 3>&2 2>&1 1>&3 | cut -d " " -f 1)
+CONTAINER=$(whiptail --title "Interface launcher" --menu "Select a container" 16 78 10 "${CONT_ARRAY[@]}" 3>&2 2>&1 1>&3 | cut -d " " -f 2 | sed 's/\[\(.*\)]/\1/')
 
 if [ "$CONTAINER" = "" ]; then
     echo "No container has been entered."
