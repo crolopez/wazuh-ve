@@ -1,4 +1,4 @@
-DEBUG_FILE="ui.log"
+DEBUG_FILE="$BASE_PATH/ui.log"
 
 debug() {
   if [ $DEBUG_MODE = "yes" ]
