@@ -48,7 +48,7 @@ ask_os_name() {
   then
       OS_TYPE="rpm"
   else
-    echo "Invalid OS name: '$OS_NAME'."
+    debug "Invalid OS name: '$OS_NAME'."
     exit 1
   fi
 }
