@@ -5,6 +5,7 @@ O_DEBUG_2="LEVEL 2"
 ask_debug() {
   if [ -z $RO_DEBUG ]
   then
+  echo eeeeeeeeeee
     box_title="Debug mode"
     box_subtitle="Select the debug mode"
     box_dimen="20 87 3"
@@ -18,20 +19,20 @@ ask_debug() {
     retval=$RO_DEBUG
   fi
 
-  if [ "$retval" == "$O_DEBUG_1" ]
+  if [ "$retval" == "$O_DEBUG_1" ] || [ "$retval" == "1" ]
   then
     debug "Debug mode: $O_DEBUG_1"
     RO_DEBUG="d"
-  elif [ "$retval" == "$O_DEBUG_2" ]
+  elif [ "$retval" == "$O_DEBUG_2" ] || [ "$retval" == "2" ]
   then
     debug "Debug mode: $O_DEBUG_2"
     RO_DEBUG="dd"
-  elif [ "$retval" == "$O_DEBUG_NONE" ]
+  elif [ "$retval" == "$O_DEBUG_NONE" ] || [ "$retval" == "" ]
   then
     debug "Debug mode: $O_DEBUG_NONE"
     RO_DEBUG=""
   else
-    debug "Invalid debug mode"
+    debug "Invalid debug mode: '$retval'."
     exit 1
   fi
 }
@@ -61,7 +62,7 @@ ask_protocol() {
   then
     RO_PROTOCOL="t"
   else
-    debug "Invalid communication protocol"
+    debug "Invalid communication protocol: '$retval'."
     exit 1
   fi
 

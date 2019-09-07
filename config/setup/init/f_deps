@@ -1,20 +1,20 @@
 install_deps() {
-  echo "Installing $1 deps."
+  debug "Installing $1 deps."
 
-  if [ $1 = "deb" ]
+  if [ "$1" == "deb" ]
   then
     apt-get update -y && \
     apt-get install -y nano git valgrind gdb && \
     apt-get install -y python gcc make libc6-dev curl policycoreutils automake autoconf libtool && \
     apt-get install -y sqlite3 net-tools
-  elif [ $1 = "rpm" ]
+  elif [ "$1" = "rpm" ]
   then
     yum update -y && \
     yum install -y nano git valgrind gdb && \
     yum install -y make gcc policycoreutils-python automake autoconf libtool && \
     yum install -y sqlite net-tools openssl
   else
-      echo "Invalid OS type."
-      exit 1
+    debug "Invalid OS type: '$1'."
+    exit 1
   fi
 }

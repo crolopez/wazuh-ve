@@ -1,6 +1,28 @@
 O_UBUNTU="Ubuntu"
 O_CENTOS="Centos"
 
+verify_os() {
+  if [ "$1" = "ubuntu" ]
+  then
+    if [ "$2" != "16.04" ]
+    then
+      debug "Unknown Ubuntu version: '$2'."
+      exit 1
+    fi
+  elif [ "$1" = "centos" ]
+  then
+    if [ "$2" != "7" ] && [ "$2" != "6" ]
+    then
+      debug "Unknown Centos version: '$2'."
+      exit 1
+    fi
+  else
+  else
+    debug "Unknown OS: '$1'."
+    exit 1
+  fi
+}
+
 ask_os_name() {
   if [ -z $OS_NAME ]
   then
@@ -18,6 +40,17 @@ ask_os_name() {
 
   debug "OS: $retval"
   OS_NAME="${retval,,}"
+
+  if [ "$OS_NAME" ==  "ubuntu" ]
+  then
+      OS_TYPE="deb"
+  elif [ "$OS_NAME" ==  "centos" ]
+  then
+      OS_TYPE="rpm"
+  else
+    echo "Invalid OS name: '$OS_NAME'."
+    exit 1
+  fi
 }
 
 ask_os_version() {
@@ -27,28 +60,25 @@ ask_os_version() {
     box_subtitle="Choose the desired version of $OS_NAME"
     if [ "$OS_NAME" ==  "ubuntu" ]
     then
-        OS_TYPE="deb"
         box_dimen="20 87 1"
         box_options=(
               "16.04" " - Create an Ubuntu 16.04 image"
               )
     elif [ "$OS_NAME" ==  "centos" ]
     then
-        OS_TYPE="rpm"
         box_dimen="20 87 2"
         box_options=(
               "7" " - Create an Centos 7 image",
               "6" " - Create an Centos 6 image"
               )
-    else
-      echo "Invalid OS name."
-      exit 1
     fi
 
     retval=$(display_menu_box)
   else
     retval=$OS_VERSION
   fi
+
+  verify_os $OS_NAME $OS_VERSION
 
   debug "OS version: $retval"
   OS_VERSION="${retval,,}"
