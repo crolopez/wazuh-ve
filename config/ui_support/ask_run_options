@@ -111,6 +111,28 @@ ask_authd_ip() {
   debug "Authd IP: $RO_AUTHD_IP"
 }
 
+ask_instances() {
+  if [ -z $RO_N_INSTANCES ]
+  then
+    box_title="Number of instances"
+    box_subtitle="Configures the number of instances to launch"
+    box_dimen="20 87"
+    box_default_in="1"
+    RO_N_INSTANCES=$(display_input_box)
+    check_cancel "$RO_N_INSTANCES"
+  fi
+
+  if ! [[ "$RO_N_INSTANCES" =~ ^[0-9]+$ ]]
+  then
+    error_msg="Invalid number of instances: '$RO_N_INSTANCES'."
+    debug "$error_msg"
+    display_text_box "$error_msg"
+    exit 1
+  fi
+
+  debug "Instances: $RO_N_INSTANCES"
+}
+
 ask_run_options() {
     ask_debug
     ask_protocol
@@ -120,4 +142,5 @@ ask_run_options() {
         ask_manager_ip
         ask_authd_ip
     fi
+    ask_instances
 }
