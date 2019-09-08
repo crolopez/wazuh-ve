@@ -5,7 +5,6 @@ O_DEBUG_2="LEVEL 2"
 ask_debug() {
   if [ -z $RO_DEBUG ]
   then
-  echo eeeeeeeeeee
     box_title="Debug mode"
     box_subtitle="Select the debug mode"
     box_dimen="20 87 3"
@@ -15,6 +14,7 @@ ask_debug() {
               "$O_DEBUG_2" "Activate level 2 debug" \
               )
     retval=$(display_menu_box)
+    check_cancel "$retval"
   else
     retval=$RO_DEBUG
   fi
@@ -51,6 +51,7 @@ ask_protocol() {
               "$O_TCP" "" \
               )
     retval=$(display_menu_box)
+    check_cancel "$retval"
   else
     retval=$RO_PROTOCOL
   fi
@@ -90,6 +91,7 @@ ask_manager_ip() {
     box_dimen="20 87"
     box_default_in="1.1.1.1"
     RO_MANAGER_IP=$(display_input_box)
+    check_cancel "$RO_MANAGER_IP"
   fi
 
   debug "Manager IP: $RO_MANAGER_IP"
@@ -103,6 +105,7 @@ ask_authd_ip() {
     box_dimen="20 87"
     box_default_in="1.1.1.1"
     RO_AUTHD_IP=$(display_input_box)
+    check_cancel "$RO_AUTHD_IP"
   fi
 
   debug "Authd IP: $RO_AUTHD_IP"

@@ -6,6 +6,7 @@ ask_branch() {
     box_dimen="20 87"
     box_default_in="v3.9.1"
     retval=$(display_input_box)
+    check_cancel "$retval"
   else
     retval=$BRANCH
   fi

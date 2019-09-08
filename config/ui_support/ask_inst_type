@@ -12,6 +12,7 @@ ask_inst_type() {
               "$O_AGENT" "Create a Wazuh agent" \
               )
     retval=$(display_menu_box)
+    check_cancel "$retval"
   else
     retval=$INSTALLATION_TYPE
   fi

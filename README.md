@@ -1,6 +1,6 @@
-# wazuh-dev
+# Wazuh Virtual Environment
 
-This project aims to facilitate the development and testing of Wazuh features by deploying simulated environments through a simple graphical interface with no dependencies other than the desired virtualization mechanism.
+This project aims to facilitate the development and testing of Wazuh features by deploying virtualized environments through a simple graphical interface with no dependencies other than the desired virtualization mechanism.
 
 ## How to use
 
@@ -47,6 +47,12 @@ This repository also provides a simple graphical tool to access the running dock
 ``` BASH
 docker_attach.sh
 ```
+
+## Future improvements
+
+- Wazuh cluster support.
+- Deploy more operating systems, including Windows.
+- Virtualizations in VirtuaBox and VMware.
 
 ## Contribute
 

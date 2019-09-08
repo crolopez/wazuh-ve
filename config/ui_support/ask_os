@@ -17,7 +17,6 @@ verify_os() {
       exit 1
     fi
   else
-  else
     debug "Unknown OS: '$1'."
     exit 1
   fi
@@ -34,6 +33,7 @@ ask_os_name() {
               "$O_CENTOS" "Create a Centos $INSTALLATION_TYPE" \
               )
     retval=$(display_menu_box)
+    check_cancel "$retval"
   else
     retval=$OS_NAME
   fi
@@ -74,11 +74,12 @@ ask_os_version() {
     fi
 
     retval=$(display_menu_box)
+    check_cancel "$retval"
   else
     retval=$OS_VERSION
   fi
 
-  verify_os $OS_NAME $OS_VERSION
+  verify_os "$OS_NAME" "$retval"
 
   debug "OS version: $retval"
   OS_VERSION="${retval,,}"

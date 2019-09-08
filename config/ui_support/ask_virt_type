@@ -17,6 +17,7 @@ ask_virt_type() {
               "$O_VAG_VMWARE" "Create Wazuh instances using Vagrant and VMware" \
               )
     retval=$(display_menu_box)
+    check_cancel "$retval"
   else
     retval=$VIRT_TYPE
   fi

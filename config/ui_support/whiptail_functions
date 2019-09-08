@@ -1,5 +1,13 @@
 TMP_FILE="whiptail_file.tmp"
 
+check_cancel() {
+  if [ "$retval" == "" ]
+  then
+    debug "Deployment aborted."
+    exit 0
+  fi
+}
+
 display_text_box() {
   echo $1 > $TMP_FILE
   whiptail --textbox $TMP_FILE 12 80
