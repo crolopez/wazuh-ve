@@ -1,35 +1,35 @@
 TMP_FILE="whiptail_file.tmp"
 
 check_cancel() {
-  if [ "$retval" == "" ]
-  then
-    debug "Deployment aborted."
-    exit 0
-  fi
+    if [ "$retval" == "" ]
+    then
+        debug "Deployment aborted."
+        exit 0
+    fi
 }
 
 display_text_box() {
-  echo $1 > $TMP_FILE
-  whiptail --textbox $TMP_FILE 12 80
-  rm $TMP_FILE
+    echo $1 > $TMP_FILE
+    whiptail --textbox $TMP_FILE 12 80
+    rm $TMP_FILE
 }
 
 display_menu_box() {
-  whiptail --title "$box_title" --menu \
-  "$box_subtitle" $box_dimen "${box_options[@]}" 3>&1 1>&2 2>&3
+    whiptail --title "$box_title" --menu \
+    "$box_subtitle" $box_dimen "${box_options[@]}" 3>&1 1>&2 2>&3
 }
 
 display_checklist_box() {
-  whiptail --title "$box_title" --checklist \
-  "$box_subtitle" $box_dimen "${box_options[@]}" 3>&1 1>&2 2>&3
+    whiptail --title "$box_title" --checklist \
+    "$box_subtitle" $box_dimen "${box_options[@]}" 3>&1 1>&2 2>&3
 }
 
 display_input_box() {
-  whiptail --title "$box_title" --inputbox \
-  "$box_subtitle" $box_dimen $box_default_in 3>&1 1>&2 2>&3
+    whiptail --title "$box_title" --inputbox \
+    "$box_subtitle" $box_dimen $box_default_in 3>&1 1>&2 2>&3
 }
 
 display_boolean_box() {
-  whiptail --title "$box_title" --yesno \
-  "$box_subtitle" $box_dimen 3>&1 1>&2 2>&3
+    whiptail --title "$box_title" --yesno \
+    "$box_subtitle" $box_dimen 3>&1 1>&2 2>&3
 }

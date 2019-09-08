@@ -3,134 +3,134 @@ O_DEBUG_1="LEVEL 1"
 O_DEBUG_2="LEVEL 2"
 
 ask_debug() {
-  if [ -z $RO_DEBUG ]
-  then
-    box_title="Debug mode"
-    box_subtitle="Select the debug mode"
-    box_dimen="20 87 3"
-    box_options=(
-              "$O_DEBUG_NONE" "No debug" \
-              "$O_DEBUG_1" "Activate level 1 debug" \
-              "$O_DEBUG_2" "Activate level 2 debug" \
-              )
-    retval=$(display_menu_box)
-    check_cancel "$retval"
-  else
-    retval=$RO_DEBUG
-  fi
+    if [ -z $RO_DEBUG ]
+    then
+        box_title="Debug mode"
+        box_subtitle="Select the debug mode"
+        box_dimen="20 87 3"
+        box_options=(
+                  "$O_DEBUG_NONE" "No debug" \
+                  "$O_DEBUG_1" "Activate level 1 debug" \
+                  "$O_DEBUG_2" "Activate level 2 debug" \
+                  )
+        retval=$(display_menu_box)
+        check_cancel "$retval"
+    else
+        retval=$RO_DEBUG
+    fi
 
-  if [ "$retval" == "$O_DEBUG_1" ] || [ "$retval" == "1" ]
-  then
-    debug "Debug mode: $O_DEBUG_1"
-    RO_DEBUG="d"
-  elif [ "$retval" == "$O_DEBUG_2" ] || [ "$retval" == "2" ]
-  then
-    debug "Debug mode: $O_DEBUG_2"
-    RO_DEBUG="dd"
-  elif [ "$retval" == "$O_DEBUG_NONE" ] || [ "$retval" == "" ]
-  then
-    debug "Debug mode: $O_DEBUG_NONE"
-    RO_DEBUG=""
-  else
-    debug "Invalid debug mode: '$retval'."
-    exit 1
-  fi
+    if [ "$retval" == "$O_DEBUG_1" ] || [ "$retval" == "1" ]
+    then
+        debug "Debug mode: $O_DEBUG_1"
+        RO_DEBUG="d"
+    elif [ "$retval" == "$O_DEBUG_2" ] || [ "$retval" == "2" ]
+    then
+        debug "Debug mode: $O_DEBUG_2"
+        RO_DEBUG="dd"
+    elif [ "$retval" == "$O_DEBUG_NONE" ] || [ "$retval" == "" ]
+    then
+        debug "Debug mode: $O_DEBUG_NONE"
+        RO_DEBUG=""
+    else
+        debug "Invalid debug mode: '$retval'."
+        exit 1
+    fi
 }
 
 O_UDP="UDP"
 O_TCP="TCP"
 
 ask_protocol() {
-  if [ -z $RO_PROTOCOL ]
-  then
-    box_title="Communication protocol"
-    box_subtitle="Choose the communication protocol"
-    box_dimen="20 87 2"
-    box_options=(
-              "$O_UDP" "" \
-              "$O_TCP" "" \
-              )
-    retval=$(display_menu_box)
-    check_cancel "$retval"
-  else
-    retval=$RO_PROTOCOL
-  fi
+    if [ -z $RO_PROTOCOL ]
+    then
+        box_title="Communication protocol"
+        box_subtitle="Choose the communication protocol"
+        box_dimen="20 87 2"
+        box_options=(
+                  "$O_UDP" "" \
+                  "$O_TCP" "" \
+                  )
+        retval=$(display_menu_box)
+        check_cancel "$retval"
+    else
+        retval=$RO_PROTOCOL
+    fi
 
-  if [ "$retval" == "$O_UDP" ]
-  then
-    RO_PROTOCOL=""
-  elif [ "$retval" == "$O_TCP" ]
-  then
-    RO_PROTOCOL="t"
-  else
-    debug "Invalid communication protocol: '$retval'."
-    exit 1
-  fi
+    if [ "$retval" == "$O_UDP" ]
+    then
+        RO_PROTOCOL=""
+    elif [ "$retval" == "$O_TCP" ]
+    then
+        RO_PROTOCOL="t"
+    else
+        debug "Invalid communication protocol: '$retval'."
+        exit 1
+    fi
 
-  debug "Communication protocol: $retval"
+    debug "Communication protocol: $retval"
 }
 
 ask_shared_folder() {
-  if [ -z $RO_SHARED_FOLDER ]
-  then
-    box_title="Shared folder"
-    box_subtitle="Choose a shared folder."
-    box_dimen="20 87"
-    box_default_in="NONE"
-    RO_SHARED_FOLDER=$(display_input_box)
-  fi
+    if [ -z $RO_SHARED_FOLDER ]
+    then
+        box_title="Shared folder"
+        box_subtitle="Choose a shared folder."
+        box_dimen="20 87"
+        box_default_in="NONE"
+        RO_SHARED_FOLDER=$(display_input_box)
+    fi
 
-  debug "Shared folder: $RO_SHARED_FOLDER"
+    debug "Shared folder: $RO_SHARED_FOLDER"
 }
 
 ask_manager_ip() {
-  if [ -z $RO_MANAGER_IP ]
-  then
-    box_title="Manager IP"
-    box_subtitle="Write the manager IP"
-    box_dimen="20 87"
-    box_default_in="1.1.1.1"
-    RO_MANAGER_IP=$(display_input_box)
-    check_cancel "$RO_MANAGER_IP"
-  fi
+    if [ -z $RO_MANAGER_IP ]
+    then
+        box_title="Manager IP"
+        box_subtitle="Write the manager IP"
+        box_dimen="20 87"
+        box_default_in="1.1.1.1"
+        RO_MANAGER_IP=$(display_input_box)
+        check_cancel "$RO_MANAGER_IP"
+    fi
 
-  debug "Manager IP: $RO_MANAGER_IP"
+    debug "Manager IP: $RO_MANAGER_IP"
 }
 
 ask_authd_ip() {
-  if [ -z $RO_AUTHD_IP ]
-  then
-    box_title="Authd IP"
-    box_subtitle="Write the authentication server IP"
-    box_dimen="20 87"
-    box_default_in="1.1.1.1"
-    RO_AUTHD_IP=$(display_input_box)
-    check_cancel "$RO_AUTHD_IP"
-  fi
+    if [ -z $RO_AUTHD_IP ]
+    then
+        box_title="Authd IP"
+        box_subtitle="Write the authentication server IP"
+        box_dimen="20 87"
+        box_default_in="1.1.1.1"
+        RO_AUTHD_IP=$(display_input_box)
+        check_cancel "$RO_AUTHD_IP"
+    fi
 
-  debug "Authd IP: $RO_AUTHD_IP"
+    debug "Authd IP: $RO_AUTHD_IP"
 }
 
 ask_instances() {
-  if [ -z $RO_N_INSTANCES ]
-  then
-    box_title="Number of instances"
-    box_subtitle="Configures the number of instances to launch"
-    box_dimen="20 87"
-    box_default_in="1"
-    RO_N_INSTANCES=$(display_input_box)
-    check_cancel "$RO_N_INSTANCES"
-  fi
+    if [ -z $RO_N_INSTANCES ]
+    then
+        box_title="Number of instances"
+        box_subtitle="Configures the number of instances to launch"
+        box_dimen="20 87"
+        box_default_in="1"
+        RO_N_INSTANCES=$(display_input_box)
+        check_cancel "$RO_N_INSTANCES"
+    fi
 
-  if ! [[ "$RO_N_INSTANCES" =~ ^[0-9]+$ ]]
-  then
-    error_msg="Invalid number of instances: '$RO_N_INSTANCES'."
-    debug "$error_msg"
-    display_text_box "$error_msg"
-    exit 1
-  fi
+    if ! [[ "$RO_N_INSTANCES" =~ ^[0-9]+$ ]]
+    then
+        error_msg="Invalid number of instances: '$RO_N_INSTANCES'."
+        debug "$error_msg"
+        display_text_box "$error_msg"
+        exit 1
+    fi
 
-  debug "Instances: $RO_N_INSTANCES"
+    debug "Instances: $RO_N_INSTANCES"
 }
 
 ask_run_options() {

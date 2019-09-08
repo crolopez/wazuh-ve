@@ -1,6 +1,6 @@
 compile_repo() {
-  cd $1/wazuh/src && \
-  make -j$2 deps && \
-  if [ $3 = "manager" ]; then TARGET="server"; else TARGET=$3; fi && \
-  make -j$2 TARGET=$TARGET DEBUG=YES
+    cd $1/wazuh/src && \ make -j$2 deps && \ if [$3 = "manager" ];
+    then TARGET="server";
+    else TARGET=$3;
+    fi && \ make -j$2 TARGET=$TARGET DEBUG=YES
 }

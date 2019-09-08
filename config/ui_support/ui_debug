@@ -1,8 +1,8 @@
 DEBUG_FILE="$BASE_PATH/ui.log"
 
 debug() {
-  if [ $DEBUG_MODE = "yes" ]
-  then
-    echo [`date`] "$1" >> $DEBUG_FILE
-  fi
+    if [ $DEBUG_MODE = "yes" ]
+    then
+        echo [`date`] "$1" >> $DEBUG_FILE
+    fi
 }

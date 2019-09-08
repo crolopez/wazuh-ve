@@ -2,21 +2,21 @@ O_MANAGER="Manager"
 O_AGENT="Agent"
 
 ask_inst_type() {
-  if [ -z $INSTALLATION_TYPE ]
-  then
-    box_title="Installation type"
-    box_subtitle="Choose the type of installation"
-    box_dimen="20 87 2"
-    box_options=(
-              "$O_MANAGER" "Create a Wazuh manager" \
-              "$O_AGENT" "Create a Wazuh agent" \
-              )
-    retval=$(display_menu_box)
-    check_cancel "$retval"
-  else
-    retval=$INSTALLATION_TYPE
-  fi
+    if [ -z $INSTALLATION_TYPE ]
+    then
+        box_title="Installation type"
+        box_subtitle="Choose the type of installation"
+        box_dimen="20 87 2"
+        box_options=(
+                  "$O_MANAGER" "Create a Wazuh manager" \
+                  "$O_AGENT" "Create a Wazuh agent" \
+                  )
+        retval=$(display_menu_box)
+        check_cancel "$retval"
+    else
+        retval=$INSTALLATION_TYPE
+    fi
 
-  debug "Installation type: $retval"
-  INSTALLATION_TYPE="${retval,,}"
+    debug "Installation type: $retval"
+    INSTALLATION_TYPE="${retval,,}"
 }
