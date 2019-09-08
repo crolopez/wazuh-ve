@@ -1,3 +1,5 @@
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+
 # Wazuh Virtual Environment
 
 This project aims to facilitate the development and testing of Wazuh features by deploying virtualized environments through a simple graphical interface with no dependencies other than the desired virtualization mechanism.
