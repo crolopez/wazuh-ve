@@ -15,11 +15,6 @@ function check_dependencies {
     need_dependence nsenter
 }
 
-if [ "$(id -u)" != "0" ]; then
-   echo "You have to be root to run this script"
-   exit 1
-fi
-
 check_dependencies
 
 i=0
@@ -38,6 +33,6 @@ if [ "$CONTAINER" = "" ]; then
 fi
 
 echo "Entering..."
-nsenter --target $(docker inspect --format {{.State.Pid}} $CONTAINER) --moun --uts --ipc --net --pid
+docker exec -it $CONTAINER /bin/bash
 
 exit 0
