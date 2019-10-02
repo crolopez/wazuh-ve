@@ -1,8 +1,8 @@
 ask_branch() {
     if [ -z $BRANCH ]
     then
-        box_title="Running OS"
-        box_subtitle="Choose the desired OS for the $INSTALLATION_TYPE"
+        box_title="Choose branch"
+        box_subtitle="Choose the desired branch for the $INSTALLATION_TYPE"
         box_dimen="20 87"
         box_default_in="v3.9.1"
         retval=$(display_input_box)

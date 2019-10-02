@@ -20,8 +20,9 @@ run_instance() {
 
         ID=0
         while [  $ID -lt $RO_N_INSTANCES ]; do
-            docker run $SHARED \
-                -d $IMAGE run_wazuh $INT_OPS $REP_IP
+            docker run $SHARED --cap-add=SYS_PTRACE \
+              --security-opt seccomp=unconfined -d $IMAGE \
+              run_wazuh $INT_OPS $REP_IP
             ID=$[ $ID + 1 ]
         done
     fi

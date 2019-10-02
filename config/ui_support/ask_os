@@ -1,12 +1,20 @@
 O_UBUNTU="Ubuntu"
 O_CENTOS="Centos"
+O_DEBIAN="Debian"
 
 verify_os() {
     if [ "$1" = "ubuntu" ]
     then
-        if [ "$2" != "16.04" ]
+        if [ "$2" != "16.04" ] && [ "$2" != "18.04" ]
         then
             debug "Unknown Ubuntu version: '$2'."
+            exit 1
+        fi
+    elif [ "$1" = "debian" ]
+    then
+        if [ "$2" != "9" ] && [ "$2" != "8" ]
+        then
+            debug "Unknown Debian version: '$2'."
             exit 1
         fi
     elif [ "$1" = "centos" ]
@@ -27,9 +35,10 @@ ask_os_name() {
     then
         box_title="Running OS"
         box_subtitle="Choose the desired OS for the $INSTALLATION_TYPE"
-        box_dimen="20 87 2"
+        box_dimen="20 87 3"
         box_options=(
                   "$O_UBUNTU" "Create an Ubuntu $INSTALLATION_TYPE" \
+                  "$O_DEBIAN" "Create a Debian $INSTALLATION_TYPE" \
                   "$O_CENTOS" "Create a Centos $INSTALLATION_TYPE" \
                   )
         retval=$(display_menu_box)
@@ -41,7 +50,7 @@ ask_os_name() {
     debug "OS: $retval"
     OS_NAME="${retval,,}"
 
-    if [ "$OS_NAME" ==  "ubuntu" ]
+    if [ "$OS_NAME" ==  "ubuntu" ] || [ "$OS_NAME" ==  "debian" ]
     then
         OS_TYPE="deb"
     elif [ "$OS_NAME" ==  "centos" ]
@@ -60,9 +69,17 @@ ask_os_version() {
         box_subtitle="Choose the desired version of $OS_NAME"
         if [ "$OS_NAME" ==  "ubuntu" ]
         then
-            box_dimen="20 87 1"
+            box_dimen="20 87 2"
             box_options=(
+                  "18.04" " - Create an Ubuntu 18.04 image",
                   "16.04" " - Create an Ubuntu 16.04 image"
+                  )
+        elif [ "$OS_NAME" ==  "debian" ]
+        then
+            box_dimen="20 87 2"
+            box_options=(
+                  "9" " - Create an Debian 9 image",
+                  "8" " - Create an Debian 8 image"
                   )
         elif [ "$OS_NAME" ==  "centos" ]
         then

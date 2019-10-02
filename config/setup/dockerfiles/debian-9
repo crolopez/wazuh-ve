@@ -1,0 +1,19 @@
+FROM debian:9
+
+ARG BRANCH=undefined
+ARG TYPE=undefined
+ARG THREADS=undefined
+ARG SOURCES_LOCATION=undefined
+ARG OS_TYPE=undefined
+
+ADD init /tmp/init
+RUN cd /tmp/init && ./deploy.sh $SOURCES_LOCATION $BRANCH $THREADS $TYPE $OS_TYPE
+
+COPY config/preloadedvars-$TYPE $SOURCES_LOCATION/wazuh/etc/preloaded-vars.conf
+COPY run/run-$TYPE.sh /usr/local/bin/run_wazuh
+
+RUN $SOURCES_LOCATION/wazuh/install.sh
+#RUN rm -rf $SOURCES_LOCATION/wazuh
+
+RUN chmod +x /usr/local/bin/run_wazuh
+ENV PATH=$PATH:/var/ossec/bin

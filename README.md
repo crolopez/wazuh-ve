@@ -39,9 +39,12 @@ These are the virtualization types currently supported. The list will be expande
 
 || Docker | VMware | VirtualBox |
 |-|-|-|-|
+**Ubuntu 18.04** | Supported | `Still not supported` | `Still not supported` |
 **Ubuntu 16.04** | Supported | `Still not supported` | `Still not supported` |
-**Centos 6** | Supported | `Still not supported` | `Still not supported` |
+**Debian 9** | Supported | `Still not supported` | `Still not supported` |
+**Debian 8** | Supported | `Still not supported` | `Still not supported` |
 **Centos 7** | Supported | `Still not supported` | `Still not supported` |
+**Centos 6** | Supported | `Still not supported` | `Still not supported` |
 
 ## Login to docker containers
 

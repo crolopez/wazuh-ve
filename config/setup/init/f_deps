@@ -12,7 +12,7 @@ install_deps() {
         yum update -y && \
         yum install -y nano git valgrind gdb && \
         yum install -y make gcc policycoreutils-python automake autoconf libtool && \
-        yum install -y sqlite net-tools openssl
+        yum install -y sqlite net-tools openssl initscripts
     else
         debug "Invalid OS type: '$1'."
         exit 1
