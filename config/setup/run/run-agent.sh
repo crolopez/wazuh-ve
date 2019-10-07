@@ -62,6 +62,7 @@ then
   authd_addr=$manager_ip
 fi
 
+$DIRECTORY/bin/ossec-control stop
 $DIRECTORY/bin/agent-auth -m $authd_addr -p $authd_port
 $DIRECTORY/bin/ossec-execd $debug
 $DIRECTORY/bin/ossec-agentd $debug

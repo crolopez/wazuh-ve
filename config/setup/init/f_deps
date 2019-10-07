@@ -6,7 +6,7 @@ install_deps() {
         apt-get update -y && \
         apt-get install -y nano git valgrind gdb && \
         apt-get install -y python gcc make libc6-dev curl policycoreutils automake autoconf libtool && \
-        apt-get install -y sqlite3 net-tools
+        apt-get install -y sqlite3 net-tools procps
     elif [ "$1" = "rpm" ]
     then
         yum update -y && \

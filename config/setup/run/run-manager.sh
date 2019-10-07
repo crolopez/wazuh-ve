@@ -50,6 +50,7 @@ then
     sed -i "s-<port>1515</port>-<port>$authd_port</port>-g" $DIRECTORY/etc/ossec.conf
 fi
 
+$DIRECTORY/bin/ossec-control stop
 $DIRECTORY/bin/wazuh-db $debug
 $DIRECTORY/bin/ossec-execd $debug
 $DIRECTORY/bin/ossec-analysisd $debug
