@@ -1,7 +1,7 @@
 check_image() {
     if [ "$VIRT_TYPE" == "docker" ]
     then
-        if [ ! "$(docker images | grep $OS_NAME$OS_VERSION-$INSTALLATION_TYPE | grep $BRANCH)" ]
+        if [ ! "$(docker images | grep $OS_NAME$OS_VERSION-$INSTALLATION_TYPE | grep ' $BRANCH ')" ]
         then
             box_title="Docker image for $OS_NAME-$OS_VERSION $INSTALLATION_TYPE ($BRANCH) not found"
             box_subtitle="Do you want to create the image?"
