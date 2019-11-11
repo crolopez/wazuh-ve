@@ -1,3 +1,0 @@
-create_docker_network() {
-    docker network create --subnet=$1.0.0 / 16 $2 2 > /dev/null
-}

@@ -41,8 +41,10 @@ These are the virtualization types currently supported. The list will be expande
 |-|-|-|-|
 **Ubuntu 18.04** | Supported | `Still not supported` | `Still not supported` |
 **Ubuntu 16.04** | Supported | `Still not supported` | `Still not supported` |
+**Debian 10** | Supported | `Still not supported` | `Still not supported` |
 **Debian 9** | Supported | `Still not supported` | `Still not supported` |
 **Debian 8** | Supported | `Still not supported` | `Still not supported` |
+**Centos 8** | Supported | `Still not supported` | `Still not supported` |
 **Centos 7** | Supported | `Still not supported` | `Still not supported` |
 **Centos 6** | Supported | `Still not supported` | `Still not supported` |
 

@@ -12,14 +12,14 @@ verify_os() {
         fi
     elif [ "$1" = "debian" ]
     then
-        if [ "$2" != "9" ] && [ "$2" != "8" ]
+        if [ "$2" != "10" ] &&  [ "$2" != "9" ] && [ "$2" != "8" ]
         then
             debug "Unknown Debian version: '$2'."
             exit 1
         fi
     elif [ "$1" = "centos" ]
     then
-        if [ "$2" != "7" ] && [ "$2" != "6" ]
+        if [ "$2" != "8" ] && [ "$2" != "7" ] && [ "$2" != "6" ]
         then
             debug "Unknown Centos version: '$2'."
             exit 1
@@ -71,21 +71,23 @@ ask_os_version() {
         then
             box_dimen="20 87 2"
             box_options=(
-                  "18.04" " - Create an Ubuntu 18.04 image",
+                  "18.04" " - Create an Ubuntu 18.04 image"
                   "16.04" " - Create an Ubuntu 16.04 image"
                   )
         elif [ "$OS_NAME" ==  "debian" ]
         then
-            box_dimen="20 87 2"
+            box_dimen="20 87 3"
             box_options=(
-                  "9" " - Create an Debian 9 image",
+                  "10" " - Create an Debian 10 image"
+                  "9" " - Create an Debian 9 image"
                   "8" " - Create an Debian 8 image"
                   )
         elif [ "$OS_NAME" ==  "centos" ]
         then
-            box_dimen="20 87 2"
+            box_dimen="20 87 3"
             box_options=(
-                  "7" " - Create an Centos 7 image",
+                  "8" " - Create an Centos 8 image"
+                  "7" " - Create an Centos 7 image"
                   "6" " - Create an Centos 6 image"
                   )
         fi
